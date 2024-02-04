@@ -1,11 +1,10 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
   const [data, setData] = useState(null);
   const [name, setName] = useState(null);
-  const [weather,setWeather] = useState({})
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const send = () => {
    if(name){
@@ -21,18 +20,6 @@ function App() {
       .catch((e) => console.log(e));
     }
   }
-
-  useEffect(()=>{
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&appid=c707f05e6ee4c6a3af2dc3255a317531')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      setWeather(data);
-    })
-    .catch(e=>{
-      console.log('eeeeee=>',e);
-    })
-  },[])
 
   return (
     <div className="App">
